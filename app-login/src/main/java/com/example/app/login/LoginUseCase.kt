@@ -19,4 +19,3 @@ class LoginUseCase @Inject constructor(private val loginService: LoginService) {
 }
 
 data class User(val userName: String)
-

@@ -101,7 +101,6 @@ class LoginFragment : Fragment() {
         loginRetryButton.visibility = View.GONE
 
         Toast.makeText(loginProgress.context, "Hello: $userName", Toast.LENGTH_SHORT).show()
-        loginRouter.openPayments(navigationController)
     }
 
     private fun openPayments() {
