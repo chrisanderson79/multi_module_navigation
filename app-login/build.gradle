@@ -1,0 +1,49 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(':app-common-viewmodel')
+    implementation project(':app-common-res')
+    implementation project(':app-common-rx')
+
+    implementation deps.kotlin.stdlib.jdk
+
+    implementation deps.rxjava2.rxJava
+    implementation deps.rxbinding2.rxbinding
+
+    implementation deps.android.arch.lifecycleRuntime
+    implementation deps.android.arch.lifecycleExtensions
+    implementation deps.android.arch.navigationFragment
+    implementation deps.android.arch.navigationUi
+    kapt deps.android.arch.lifecycleCompiler
+
+    implementation deps.dagger.runtime
+    implementation deps.dagger.androidRuntime
+    implementation deps.dagger.androidSupportRuntime
+    kapt deps.dagger.compiler
+    kapt deps.dagger.androidCompiler
+
+    testImplementation deps.junit
+    testImplementation deps.assertjCore
+    testImplementation deps.mockitoKotlin
+}

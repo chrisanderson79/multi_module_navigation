@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/actionLogin">
+    <fragment
+        android:id="@+id/actionLogin"
+        android:name="com.example.app.login.LoginFragment"
+        android:label="@string/login_title"
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/openPaymentsAction"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:destination="@id/actionPayments" />
+    </fragment>
+    <fragment
+        android:id="@+id/actionPayments"
+        android:name="com.example.app.payment.PaymentFragment"
+        android:label="@string/payments_title"
+        tools:layout="@layout/payment_fragment" >
+    </fragment>
+</navigation>

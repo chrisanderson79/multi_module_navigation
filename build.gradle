@@ -1,0 +1,152 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.buildConfig = [
+            'compileSdk': 27,
+            'minSdk': 21,
+            'targetSdk': 27,
+            'version': [
+                    'major': 1,
+                    'minor': 3,
+                    'patch': 0,
+                    'build': 1,
+            ],
+    ]
+    ext.buildConfig.version['name'] = "${buildConfig.version.major}.${buildConfig.version.minor}.${buildConfig.version.patch}"
+    ext.buildConfig.version['code'] = buildConfig.version.major * 1000000 + buildConfig.version.minor * 10000 + buildConfig.version.patch * 100 + buildConfig.version.build
+
+    ext.versions = [
+            'supportLibrary': '27.1.1',
+            'atsl': '1.0.1',
+            'kotlin': '1.2.41',
+            'kotlinCoroutines': '0.23.0-dev-1',
+            'okhttp': '3.10.0',
+            'retrofit': '2.4.0',
+            'kotshi': '1.0.4',
+            'dagger': '2.16',
+            'sqldelight': '1.0.0-alpha3',
+            'archLifecycle': '1.1.1',
+            'rxjava2': '2.1.0',
+            'rxBindingVersion': '2.1.1',
+    ]
+    ext.deps = [
+            'kotlin': [
+                    'stdlib': [
+                            'common': "org.jetbrains.kotlin:kotlin-stdlib-common:${versions.kotlin}",
+                            'jdk': "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}",
+                            'js': "org.jetbrains.kotlin:kotlin-stdlib-js:${versions.kotlin}",
+                    ],
+                    'test': [
+                            'common': "org.jetbrains.kotlin:kotlin-test-common:${versions.kotlin}",
+                            'annotations': "org.jetbrains.kotlin:kotlin-test-annotations-common:${versions.kotlin}",
+                            'jdk': "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlin}",
+                            'js': "org.jetbrains.kotlin:kotlin-test-js:${versions.kotlin}",
+                    ],
+            ],
+            'android': [
+                    'arch': [
+                            'navigationFragment': 'android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha01',
+                            'navigationUi': 'android.arch.navigation:navigation-ui-ktx:1.0.0-alpha01',
+                            'lifecycleRuntime': "android.arch.lifecycle:runtime:${versions.archLifecycle}",
+                            'lifecycleExtensions': "android.arch.lifecycle:extensions:${versions.archLifecycle}",
+                            'lifecycleCompiler': "android.arch.lifecycle:compiler:${versions.archLifecycle}",
+                            'liveDataCore': "android.arch.lifecycle:livedata-core:${versions.archLifecycle}",
+                            'viewmodel': "android.arch.lifecycle:viewmodel:${versions.archLifecycle}",
+                    ],
+                    'support': [
+                            'annotations': "com.android.support:support-annotations:${versions.supportLibrary}",
+                            'coreUtils': "com.android.support:support-core-utils:${versions.supportLibrary}",
+                            'compat': "com.android.support:support-compat:${versions.supportLibrary}",
+                            'recyclerView': "com.android.support:recyclerview-v7:${versions.supportLibrary}",
+                            'customTabs': "com.android.support:customtabs:${versions.supportLibrary}",
+                            'appCompat': "com.android.support:appcompat-v7:${versions.supportLibrary}",
+                            'design': "com.android.support:design:${versions.supportLibrary}",
+                            'constraintLayout': "com.android.support.constraint:constraint-layout:1.1.0",
+                    ],
+                    'x': [
+                            'coreKtx': 'androidx.core:core-ktx:0.3',
+                    ],
+                    'test': [
+                            'runner': "com.android.support.test:runner:${versions.atsl}",
+                            'rules': "com.android.support.test:rules${versions.atsl}",
+                            'espressoCore': 'com.android.support.test.espresso:espresso-core:3.0.2'
+                    ],
+            ],
+            'okhttp': [
+                    'client': "com.squareup.okhttp3:okhttp:${versions.okhttp}",
+                    'logging': "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}",
+                    'mockWebServer': "com.squareup.okhttp3:mockwebserver:${versions.okhttp}",
+            ],
+            'retrofit': [
+                    'client': "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                    'adapterKotlinCoroutines': 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0',
+                    'converterKotlinxSerialization': 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.0.1',
+                    'converterMoshi': "com.squareup.retrofit2:converter-moshi:${versions.retrofit}",
+            ],
+            'dagger': [
+                    'runtime': "com.google.dagger:dagger:${versions.dagger}",
+                    'compiler': "com.google.dagger:dagger-compiler:${versions.dagger}",
+                    'androidRuntime': "com.google.dagger:dagger-android:${versions.dagger}",
+                    'androidSupportRuntime': "com.google.dagger:dagger-android-support:${versions.dagger}",
+                    'androidCompiler': "com.google.dagger:dagger-android-processor:${versions.dagger}",
+            ],
+            'rxjava2': [
+                    'rxAndroid': "io.reactivex.rxjava2:rxandroid:${versions.rxjava2}",
+                    'rxJava': "io.reactivex.rxjava2:rxjava:${versions.rxjava2}",
+            ],
+            'rxbinding2': [
+                    'rxbinding': "com.jakewharton.rxbinding2:rxbinding:${versions.rxBindingVersion}",
+            ],
+
+            'assertjCore': 'org.assertj:assertj-core:1.2.0',
+            'mockitoKotlin': 'com.nhaarman:mockito-kotlin:1.5.0',
+            'okio': 'com.squareup.okio:okio:1.14.0',
+            'moshi': 'com.squareup.moshi:moshi:1.5.0',
+            'timber': [
+                    'common': 'com.jakewharton.timber:timber-common:5.0.0-SNAPSHOT',
+                    'jdk': 'com.jakewharton.timber:timber-jdk:5.0.0-SNAPSHOT',
+                    'js': 'com.jakewharton.timber:timber-js:5.0.0-SNAPSHOT',
+                    'android': 'com.jakewharton.timber:timber-android:5.0.0-SNAPSHOT',
+            ],
+            'junit': 'junit:junit:4.12',
+            'truth': 'com.google.truth:truth:0.40',
+    ]
+
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.0-alpha16'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+        classpath 'android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0-alpha01'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    // Force all of the primary support libraries to use the same version.
+    configurations.all {
+        resolutionStrategy {
+            eachDependency { details ->
+//                if (details.requested.group == 'com.android.support') {
+//                    details.useVersion versions.supportLibrary
+//                }
+//                if (details.requested.group == 'android.arch.lifecycle') {
+//                    details.useVersion versions.archLifecycle
+//                }
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
